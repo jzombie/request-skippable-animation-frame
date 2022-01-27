@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiple Audio Meters</title>
+    <script src="../../bundle.js"></script>
+    <script src="AudioLevelMeterController.js"></script>
+  </head>
+  <body>
+    <!--
+      TODO: Implement more dynamic approach for rendering additional meters
+      TODO: Capture frame rate
+      TODO: Implement ability to switch between native and skippable engines
+    -->
+
+    <canvas id="audio1" width="100" height="200"></canvas>
+    <canvas id="audio2" width="100" height="200"></canvas>
+    <canvas id="audio3" width="100" height="200"></canvas>
+    <canvas id="audio4" width="100" height="200"></canvas>
+    <canvas id="audio5" width="100" height="200"></canvas>
+    <canvas id="audio6" width="100" height="200"></canvas>
+    <canvas id="audio7" width="100" height="200"></canvas>
+    <canvas id="audio8" width="100" height="200"></canvas>
+    <canvas id="audio9" width="100" height="200"></canvas>
+    <canvas id="audio10" width="100" height="200"></canvas>
+    <canvas id="audio11" width="100" height="200"></canvas>
+    <canvas id="audio12" width="100" height="200"></canvas>
+    <canvas id="audio13" width="100" height="200"></canvas>
+    <canvas id="audio14" width="100" height="200"></canvas>
+    <canvas id="audio15" width="100" height="200"></canvas>
+    <canvas id="audio16" width="100" height="200"></canvas>
+    <canvas id="audio17" width="100" height="200"></canvas>
+    <canvas id="audio18" width="100" height="200"></canvas>
+    <canvas id="audio19" width="100" height="200"></canvas>
+    <canvas id="audio20" width="100" height="200"></canvas>
+    <canvas id="audio20" width="100" height="200"></canvas>
+    <canvas id="audio21" width="100" height="200"></canvas>
+    <canvas id="audio22" width="100" height="200"></canvas>
+    <canvas id="audio23" width="100" height="200"></canvas>
+    <canvas id="audio24" width="100" height="200"></canvas>
+    <canvas id="audio25" width="100" height="200"></canvas>
+    <canvas id="audio26" width="100" height="200"></canvas>
+    <canvas id="audio27" width="100" height="200"></canvas>
+    <canvas id="audio28" width="100" height="200"></canvas>
+    <canvas id="audio29" width="100" height="200"></canvas>
+    <canvas id="audio30" width="100" height="200"></canvas>
+    <canvas id="audio30" width="100" height="200"></canvas>
+    <canvas id="audio30" width="100" height="200"></canvas>
+    <canvas id="audio31" width="100" height="200"></canvas>
+    <canvas id="audio32" width="100" height="200"></canvas>
+    <canvas id="audio33" width="100" height="200"></canvas>
+    <canvas id="audio34" width="100" height="200"></canvas>
+    <canvas id="audio35" width="100" height="200"></canvas>
+    <canvas id="audio36" width="100" height="200"></canvas>
+    <canvas id="audio37" width="100" height="200"></canvas>
+    <canvas id="audio38" width="100" height="200"></canvas>
+    <canvas id="audio39" width="100" height="200"></canvas>
+    <canvas id="audio40" width="100" height="200"></canvas>
+
+    <script>
+      [
+        "audio1",
+        "audio2",
+        "audio3",
+        "audio4",
+        "audio5",
+        "audio6",
+        "audio7",
+        "audio8",
+        "audio9",
+        "audio10",
+        "audio11",
+        "audio12",
+        "audio13",
+        "audio14",
+        "audio15",
+        "audio16",
+        "audio17",
+        "audio18",
+        "audio19",
+        "audio20",
+        "audio20",
+        "audio21",
+        "audio22",
+        "audio23",
+        "audio24",
+        "audio25",
+        "audio26",
+        "audio27",
+        "audio28",
+        "audio29",
+        "audio30",
+        "audio31",
+        "audio31",
+        "audio32",
+        "audio33",
+        "audio34",
+        "audio35",
+        "audio36",
+        "audio37",
+        "audio38",
+        "audio39",
+        "audio40",
+      ].map((id, idx) => {
+        const controller = new AudioLevelMeterController(
+          document.getElementById(id),
+          id
+        );
+        // Stagger setInterval init calls so that they aren't all instantiated
+        // at once, to help simulate dynamic calls being added
+        setTimeout(() => {
+          window.setInterval(
+            () => {
+              controller.setValue(Math.random() * 2 * idx + 1);
+            },
+            // A value intentionally faster than the browser's frame rate
+            8
+          );
+        }, idx + 4 * 4);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "request-skippable-animation-frame",
+  "version": "0.0.1",
+  "description": "Wrapper around window.requestAnimationFrame which provides skippable frame support for potentially increased performance for concurrent operations",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "browserify -s requestSkippableAnimationFrame . -o bundle.js",
+    "test": "npm run test-remote",
+    "test-remote": "dotenv airtap --concurrency 1 test/*.test.js",
+    "test-local": "airtap --concurrency 1 --coverage --preset local test/*.test.js",
+    "coverage": "nyc npm run test-local"
+  },
+  "keywords": [
+    "web",
+    "browser",
+    "requestAnimationFrame",
+    "animation",
+    "cpu",
+    "gpu"
+  ],
+  "author": {
+    "name": "zenOSmosis",
+    "email": "info@zenosmosis.com",
+    "url": "https://zenosmosis.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenOSmosis/request-skippable-animation-frame.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zenOSmosis/request-skippable-animation-frame/issues"
+  },
+  "homepage": "https://github.com/zenOSmosis/request-skippable-animation-frame#readme",
+  "devDependencies": {
+    "airtap": "^4.0.4",
+    "airtap-sauce": "^1.1.2",
+    "airtap-system": "^0.1.0",
+    "browserify": "^17.0.0",
+    "dotenv-cli": "^4.1.1",
+    "nyc": "^15.1.0",
+    "tape": "^5.4.1"
+  }
+}

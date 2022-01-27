@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Loop performance comparison</title>
+    <script src="../../bundle.js"></script>
+  </head>
+  <body>
+    <p>
+      Determines the amount of time it takes to complete a back-to-back cycle of
+      multiple call attempts a pre-determined number of times. The results are
+      "noisy" and not an exact indication of the performance, due to the nature
+      of the browser's runtime performance.
+    </p>
+    <p>
+      The &quot;native&quot; and &quot;skippable&quot; times should be
+      comparable. Large differences in numbers could mean potential
+      inefficiencies in requestSkippableAnimationFrame.
+    </p>
+
+    <button id="measure-native">Measure requestAnimationFrame</button>
+    <button id="measure-skippable">
+      Measure requestSkippableAnimationFrame
+    </button>
+
+    <script>
+      async function measure(id) {
+        [...document.getElementsByTagName("button")].forEach(
+          (button) => (button.disabled = true)
+        );
+
+        const timeStart = window.performance.now();
+
+        const MAX_ITERATIONS = 512;
+
+        const timeEnd = await new Promise((resolve) => {
+          let iteration = -1;
+
+          function tick() {
+            ++iteration;
+
+            if (iteration >= MAX_ITERATIONS) {
+              return resolve(window.performance.now());
+            }
+
+            if (id === "measure-native") {
+              window.requestAnimationFrame(tick);
+            } else {
+              window.requestSkippableAnimationFrame(tick, "measure1");
+            }
+          }
+
+          tick();
+        });
+
+        alert(timeEnd - timeStart);
+
+        [...document.getElementsByTagName("button")].forEach(
+          (button) => (button.disabled = false)
+        );
+      }
+
+      ["measure-native", "measure-skippable"].forEach((id) => {
+        document.getElementById(id).onclick = () => measure(id);
+      });
+    </script>
+  </body>
+</html>

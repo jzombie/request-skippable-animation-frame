@@ -1,5 +1,7 @@
 # request-skippable-animation-frame
 
+**Work in progress. Not recommended for use.**
+
 TODO: Build out this documentation
 
 Note to self: Experimented with d3-timer for this, and actually wound up with much higher CPU usage when running multiple audio meters

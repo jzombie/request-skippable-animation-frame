@@ -13,7 +13,7 @@ module.exports = async function detectMonitorRefreshRate() {
   const frameCount = await new Promise((resolve) => {
     // Takes into consideration potentially higher Hz than 60, as performing
     // multiple runs to potentially determine a better average approximation
-    const ITERATIONS = 60 * 4;
+    const MAX_ITERATIONS = 60 * 4;
 
     let frameCount = 0;
 
@@ -24,7 +24,7 @@ module.exports = async function detectMonitorRefreshRate() {
 
       ++frameCount;
 
-      if (frameCount === ITERATIONS) {
+      if (frameCount === MAX_ITERATIONS) {
         window.cancelAnimationFrame(frameId);
 
         resolve(frameCount);
